@@ -1,4 +1,4 @@
-Getgenv().GG = {
+getgenv().GG = {
     Language = {
         CheckboxEnabled = "Enabled",
         CheckboxDisabled = "Disabled",
@@ -2624,60 +2624,6 @@ function Library:create_ui()
                 return FeatureContainer
             end                    
 
-            function ModuleManager:create_button(settings: any)
-                LayoutOrderModule = LayoutOrderModule + 1;
-            
-                if self._size == 0 then
-                    self._size = 11
-                end
-            
-                self._size += 20;
-            
-                if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size);
-                end
-            
-                Options.Size = UDim2.fromOffset(241, self._size);
-            
-                local Button = Instance.new("TextButton")
-                Button.Size = UDim2.new(0, 207, 0, 16)
-                Button.BackgroundColor3 = Color3.fromRGB(0, 162, 255)
-                Button.BackgroundTransparency = 0.7
-                Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-                Button.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
-                Button.Text = settings.title or "Button"
-                Button.TextSize = 11
-                Button.Name = "Button"
-                Button.Parent = Options
-                Button.LayoutOrder = LayoutOrderModule
-            
-                local UICorner = Instance.new("UICorner")
-                UICorner.CornerRadius = UDim.new(0, 4)
-                UICorner.Parent = Button
-            
-                -- Tween the background color on hover
-                Button.MouseEnter:Connect(function()
-                    TweenService:Create(Button, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                        BackgroundTransparency = 0.5
-                    }):Play()
-                end)
-            
-                Button.MouseLeave:Connect(function()
-                    TweenService:Create(Button, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                        BackgroundTransparency = 0.7
-                    }):Play()
-                end)
-            
-                -- Connect the callback function
-                Button.MouseButton1Click:Connect(function()
-                    if settings.callback then
-                        settings.callback()
-                    end
-                end)
-            
-                return Button
-            end
-            
             return ModuleManager
         end
 
