@@ -2647,4 +2647,18 @@ function Library:create_ui()
     return self
 end
 
+
+function ModuleManager:create_button(title, callback)
+    local unique_flag = "button_" .. title .. tostring(math.random(1, 999999))
+    self:create_checkbox({
+        title = title,
+        flag = unique_flag,
+        callback = function()
+            Library.flags[unique_flag] = false
+            callback()
+        end
+    })
+end
+
+
 return Library
