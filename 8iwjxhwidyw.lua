@@ -360,7 +360,7 @@ local NotificationContainer = Instance.new("Frame")
 NotificationContainer.Name = "RobloxCoreGuis"
 NotificationContainer.Size = UDim2.new(0, 300, 0, 0)  -- Fixed width (300px), dynamic height (Y)
 NotificationContainer.Position = UDim2.new(0.8, 0, 0, 10)  -- Right side, offset by 10 from top
-NotificationContainer.BackgroundTransparency = 1
+NotificationContainer.BackgroundTransparency = 0
 NotificationContainer.ClipsDescendants = false;
 NotificationContainer.Parent = game:GetService("CoreGui").RobloxGui:FindFirstChild("RobloxCoreGuis") or Instance.new("ScreenGui", game:GetService("CoreGui").RobloxGui)
 NotificationContainer.AutomaticSize = Enum.AutomaticSize.Y
@@ -532,7 +532,7 @@ function Library:create_ui()
     Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Container.AnchorPoint = Vector2.new(0.5, 0.5)
     Container.Name = 'Container'
-    Container.BackgroundTransparency = 0.05000000074505806
+    Container.BackgroundTransparency = 0
     Container.BackgroundColor3 = Color3.fromRGB(12, 13, 15)
     Container.Position = UDim2.new(0.5, 0, 0.5, 0)
     Container.Size = UDim2.new(0, 0, 0, 0)
@@ -621,7 +621,7 @@ function Library:create_ui()
     Icon.ScaleType = Enum.ScaleType.Fit
     Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Icon.AnchorPoint = Vector2.new(0, 0.5)
-    Icon.Image = 'rbxassetid://107819132007001'
+    Icon.Image = 'rbxassetid://133637164107898'
     Icon.BackgroundTransparency = 1
     Icon.Position = UDim2.new(0.02500000037252903, 0, 0.054999999701976776, 0)
     Icon.Name = 'Icon'
@@ -710,7 +710,7 @@ function Library:create_ui()
 
     function self:Update1Run(a)
         if a == "nil" then
-            Container.BackgroundTransparency = 0.05000000074505806;
+            Container.BackgroundTransparency = 0;
         else
             pcall(function()
                 Container.BackgroundTransparency = tonumber(a);
@@ -1035,7 +1035,7 @@ function Library:create_ui()
             Icon.ImageTransparency = 0.699999988079071
             Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Icon.AnchorPoint = Vector2.new(0, 0.5)
-            Icon.Image = 'rbxassetid://79095934438045'
+            Icon.Image = 'rbxassetid://133637164107898'
             Icon.BackgroundTransparency = 1
             Icon.Position = UDim2.new(0.07100000232458115, 0, 0.8199999928474426, 0)
             Icon.Name = 'Icon'
@@ -1428,6 +1428,50 @@ function Library:create_ui()
 
                 return ParagraphManager
             end
+
+             function ModuleManager:create_button(settings: any)
+    LayoutOrderModule = LayoutOrderModule + 1
+    if self._size == 0 then self._size = 11 end
+    self._size += 30  -- adjust for button height
+    if ModuleManager._state then
+        Module.Size = UDim2.fromOffset(241, 93 + self._size)
+    end
+    Options.Size = UDim2.fromOffset(241, self._size)
+
+    local Button = Instance.new("TextButton")
+    Button.Name = "Button"
+    Button.BackgroundColor3 = Color3.fromRGB(32, 38, 51)
+    Button.BackgroundTransparency = 0.1
+    Button.BorderSizePixel = 0
+    Button.Size = UDim2.new(0, 207, 0, 30)
+    Button.Text = settings.text or "Button"
+    Button.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.TextTransparency = 0.2
+    Button.TextSize = 12
+    Button.AutoButtonColor = false
+    Button.Parent = Options
+    Button.LayoutOrder = LayoutOrderModule
+
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 4)
+    UICorner.Parent = Button
+
+    -- Hover effects
+    Button.MouseEnter:Connect(function()
+        TweenService:Create(Button, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { BackgroundTransparency = 0 }):Play()
+    end)
+    Button.MouseLeave:Connect(function()
+        TweenService:Create(Button, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { BackgroundTransparency = 0.1 }):Play()
+    end)
+
+    -- Click behavior
+    Button.MouseButton1Click:Connect(function()
+        settings.callback()
+    end)
+
+    return {}
+end
 
             function ModuleManager:create_text(settings: any)
                 LayoutOrderModule = LayoutOrderModule + 1
