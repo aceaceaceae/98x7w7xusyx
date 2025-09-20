@@ -47,10 +47,10 @@ local CoreGui = cloneref(game:GetService('CoreGui'))
 local Debris = cloneref(game:GetService('Debris'))
 
 local mouse = Players.LocalPlayer:GetMouse()
-local old_Apex = CoreGui:FindFirstChild('Nexus')
+local old_Apex = CoreGui:FindFirstChild('Apex')
 
 if old_Apex then
-    Debris:AddItem(old_Nexus, 0)
+    Debris:AddItem(old_Apex, 0)
 end
 
 if not isfolder("Apex") then
@@ -515,17 +515,17 @@ end
 
 
 function Library:create_ui()
-    local old_Nexus = CoreGui:FindFirstChild('Nexus')
+    local old_Apex = CoreGui:FindFirstChild('Apex')
 
-    if old_Nexus then
-        Debris:AddItem(old_Nexus, 0)
+    if old_Apex then
+        Debris:AddItem(old_Apex, 0)
     end
 
-    local Nexus = Instance.new('ScreenGui')
-    Nexus.ResetOnSpawn = false
-    Nexus.Name = 'Nexus'
-    Nexus.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    Nexus.Parent = CoreGui
+    local Apex = Instance.new('ScreenGui')
+    Apex.ResetOnSpawn = false
+    Apex.Name = 'Apex'
+    Apex.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Apex.Parent = CoreGui
     
     local Container = Instance.new('Frame')
     Container.ClipsDescendants = true
@@ -538,7 +538,7 @@ function Library:create_ui()
     Container.Size = UDim2.new(0, 0, 0, 0)
     Container.Active = true
     Container.BorderSizePixel = 0
-    Container.Parent = Nexus
+    Container.Parent = Apex
     
     local UICorner = Instance.new('UICorner')
     UICorner.CornerRadius = UDim.new(0, 10)
@@ -583,7 +583,7 @@ function Library:create_ui()
     ClientName.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
     ClientName.TextColor3 = Color3.fromRGB(0, 162, 255)
     ClientName.TextTransparency = 0.20000000298023224
-    ClientName.Text = 'Nexus'
+    ClientName.Text = 'Apex'
     ClientName.Name = 'ClientName'
     ClientName.Size = UDim2.new(0, 31, 0, 13)
     ClientName.AnchorPoint = Vector2.new(0, 0.5)
@@ -662,7 +662,7 @@ function Library:create_ui()
     local UIScale = Instance.new('UIScale')
     UIScale.Parent = Container    
     
-    self._ui = Nexus
+    self._ui = Apex
 
     local function on_drag(input: InputObject, process: boolean)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
@@ -719,7 +719,7 @@ function Library:create_ui()
     end;
 
     function self:UIVisiblity()
-        Nexus.Enabled = not Nexus.Enabled;
+        Apex.Enabled = not Apex.Enabled;
     end;
 
     function self:change_visiblity(state: boolean)
@@ -738,7 +738,7 @@ function Library:create_ui()
     function self:load()
         local content = {}
     
-        for _, object in Nexus:GetDescendants() do
+        for _, object in Apex:GetDescendants() do
             if not object:IsA('ImageLabel') then
                 continue
             end
@@ -1052,7 +1052,7 @@ function Library:create_ui()
                 ModuleName.Text = settings.title or "Skibidi"
             else
                 ModuleName.RichText = true
-                ModuleName.Text = settings.richtext or "<font color='rgb(255,0,0)'>Nexus</font> user"
+                ModuleName.Text = settings.richtext or "<font color='rgb(255,0,0)'>Apex</font> user"
             end;
             ModuleName.Name = 'ModuleName'
             ModuleName.Size = UDim2.new(0, 205, 0, 13)
@@ -1400,7 +1400,7 @@ function Library:create_ui()
                     Body.Text = settings.text or "Skibidi"
                 else
                     Body.RichText = true
-                    Body.Text = settings.richtext or "<font color='rgb(255,0,0)'>Nexus</font> user"
+                    Body.Text = settings.richtext or "<font color='rgb(255,0,0)'>Apex</font> user"
                 end
                 
                 Body.Size = UDim2.new(1, -10, 0, 20)
@@ -1470,7 +1470,7 @@ function Library:create_ui()
                     Body.Text = settings.text or "Skibidi" -- Default text
                 else
                     Body.RichText = true
-                    Body.Text = settings.richtext or "<font color='rgb(255,0,0)'>Nexus</font> user" -- Default rich text
+                    Body.Text = settings.richtext or "<font color='rgb(255,0,0)'>Apex</font> user" -- Default rich text
                 end
             
                 Body.Size = UDim2.new(1, -10, 1, 0)
@@ -1501,7 +1501,7 @@ function Library:create_ui()
                         Body.Text = new_settings.text or "Skibidi" -- Default text
                     else
                         Body.RichText = true
-                        Body.Text = new_settings.richtext or "<font color='rgb(255,0,0)'>Nexus</font> user" -- Default rich text
+                        Body.Text = new_settings.richtext or "<font color='rgb(255,0,0)'>Apex</font> user" -- Default rich text
                     end
                 end;
             
