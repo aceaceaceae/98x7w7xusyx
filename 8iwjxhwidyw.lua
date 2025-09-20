@@ -47,14 +47,14 @@ local CoreGui = cloneref(game:GetService('CoreGui'))
 local Debris = cloneref(game:GetService('Debris'))
 
 local mouse = Players.LocalPlayer:GetMouse()
-local old_Nexus = CoreGui:FindFirstChild('Nexus')
+local old_Apex = CoreGui:FindFirstChild('Nexus')
 
-if old_Nexus then
+if old_Apex then
     Debris:AddItem(old_Nexus, 0)
 end
 
-if not isfolder("Nexus") then
-    makefolder("Nexus")
+if not isfolder("Apex") then
+    makefolder("Apex")
 end
 
 
@@ -283,7 +283,7 @@ local Config = setmetatable({
     save = function(self: any, file_name: any, config: any)
         local success_save, result = pcall(function()
             local flags = HttpService:JSONEncode(config)
-            writefile('Nexus/'..file_name..'.json', flags)
+            writefile('Apex/'..file_name..'.json', flags)
         end)
     
         if not success_save then
@@ -292,13 +292,13 @@ local Config = setmetatable({
     end,
     load = function(self: any, file_name: any, config: any)
         local success_load, result = pcall(function()
-            if not isfile('Nexus/'..file_name..'.json') then
+            if not isfile('Apex/'..file_name..'.json') then
                 self:save(file_name, config)
         
                 return
             end
         
-            local flags = readfile('Nexus/'..file_name..'.json')
+            local flags = readfile('Apex/'..file_name..'.json')
         
             if not flags then
                 self:save(file_name, config)
